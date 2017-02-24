@@ -9,11 +9,15 @@
 	<!-- add Angular.js and our script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
     <script>
+	    	console.clear();
 		var app = angular.module('app', []);
 
 		app.controller('ctrl', ($scope, $http) => {
+		  // enter your Pi's IP address inside the single quotes on the next line
+		  var localIp = '';
+		  var url = 'http://' + localIp + ':3000/';
 		  // to initialize, request the config from the server with an HTTP GET request (Angular's $http makes this simple)
-		  $http.get('config')
+		  $http.get(url + 'config')
 			.then(response => $scope.drinks = response.data.drinks)
 			.catch(err => console.error(err));
 
